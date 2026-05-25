@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhanu Kumar · PMM Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F2EC;
+    --bg-card: #FDFCF9;
+    --ink: #1A1814;
+    --ink-muted: #6B6760;
+    --ink-faint: #B0ADA8;
+    --accent: #C8472A;
+    --accent-light: #F2E8E5;
+    --border: rgba(26,24,20,0.1);
+    --border-strong: rgba(26,24,20,0.18);
+    --tag-bg: #EDE9E1;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  header {
+    padding: 4rem 4rem 3rem;
+    border-bottom: 0.5px solid var(--border-strong);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-meta {
+    text-align: right;
+  }
+
+  .header-meta p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+
+  .header-meta a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s;
+  }
+
+  .header-meta a:hover { color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+    justify-content: flex-end;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border: 0.5px solid var(--border-strong);
+    border-radius: 100px;
+    padding: 5px 12px;
+    transition: all 0.15s;
+    background: transparent;
+  }
+
+  .contact-link:hover { color: var(--ink); background: var(--bg-card); border-color: var(--ink); }
+
+  .contact-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+  /* INTRO */
+  .intro {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 4rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .intro p {
+    font-size: 17px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    max-width: 640px;
+    font-weight: 300;
+  }
+
+  .intro p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .count-badge {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 0.5px solid var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+  }
+
+  .count-badge .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .count-badge .lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+
+  /* FILTER */
+  .filter-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 4rem;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .filter-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 0.5px solid var(--border-strong);
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover { background: var(--bg-card); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* GRID */
+  .grid-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 4rem 5rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    border: 0.5px solid var(--border-strong);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .card {
+    background: var(--bg-card);
+    padding: 1.75rem;
+    border-right: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    transition: background 0.15s;
+    opacity: 1;
+    transition: opacity 0.2s, background 0.15s;
+  }
+
+  .card:hover { background: #FEFDF9; }
+
+  .card.hidden { display: none; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  .arrow {
+    font-size: 18px;
+    color: var(--ink-faint);
+    transition: transform 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .card:hover .arrow { transform: translate(3px, -3px); color: var(--accent); }
+
+  .card-company {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--tag-bg);
+    color: var(--ink-muted);
+  }
+
+  .tag.accent { background: var(--accent-light); color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border-strong);
+    padding: 2rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+  }
+
+  footer a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    border-bottom: 0.5px solid var(--border-strong);
+    transition: color 0.15s;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card { animation: fadeUp 0.4s ease both; }
+  .card:nth-child(1)  { animation-delay: 0.05s; }
+  .card:nth-child(2)  { animation-delay: 0.08s; }
+  .card:nth-child(3)  { animation-delay: 0.11s; }
+  .card:nth-child(4)  { animation-delay: 0.14s; }
+  .card:nth-child(5)  { animation-delay: 0.17s; }
+  .card:nth-child(6)  { animation-delay: 0.20s; }
+  .card:nth-child(7)  { animation-delay: 0.23s; }
+  .card:nth-child(8)  { animation-delay: 0.26s; }
+  .card:nth-child(9)  { animation-delay: 0.29s; }
+  .card:nth-child(10) { animation-delay: 0.32s; }
+  .card:nth-child(11) { animation-delay: 0.35s; }
+  .card:nth-child(12) { animation-delay: 0.38s; }
+  .card:nth-child(13) { animation-delay: 0.41s; }
+  .card:nth-child(14) { animation-delay: 0.44s; }
+  .card:nth-child(15) { animation-delay: 0.47s; }
+  .card:nth-child(16) { animation-delay: 0.50s; }
+  .card:nth-child(17) { animation-delay: 0.53s; }
+  .card:nth-child(18) { animation-delay: 0.56s; }
+  .card:nth-child(19) { animation-delay: 0.59s; }
+
+  @media (max-width: 768px) {
+    header, .intro, .filter-bar, .grid-wrap, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    header { grid-template-columns: 1fr; }
+    .header-meta { text-align: left; }
+    .intro { flex-direction: column; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <p class="header-eyebrow">PMM Portfolio</p>
+    <h1>Bhanu Kumar<br><em>Proof of Work</em></h1>
+  </div>
+  <div class="header-meta">
+    <p>Product Marketer<br>Messaging · Positioning · GTM</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:bhanukumar0902@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Email
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/bhanuexcalibur" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-link" href="https://drive.google.com/file/d/1J5kCDIqAvIY8-TmzLPvYnauS8agx3Cmt/view?usp=sharing" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Resume
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="intro">
+  <p>Each page below is a <strong>company-specific PMM exercise</strong>: messaging audits, GTM briefs, persona frameworks, and positioning teardowns built for real products. Not hypotheticals. Not case studies. Work.</p>
+  <div class="count-badge">
+    <span class="num">19</span>
+    <span class="lbl">pages</span>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="fintech">Fintech</button>
+  <button class="filter-btn" data-filter="saas">SaaS</button>
+  <button class="filter-btn" data-filter="developer">Developer Tools</button>
+  <button class="filter-btn" data-filter="iot">IoT / Embedded</button>
+  <button class="filter-btn" data-filter="web3">Web3</button>
+  <button class="filter-btn" data-filter="growth">Growth</button>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid" id="grid">
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Stripe/" target="_blank" data-tags="fintech saas developer">
+      <div class="card-top">
+        <span class="card-num">01</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Stripe</div>
+      <p class="card-desc">Pricing page messaging audit and GTM brief for Stripe's PMM Pricing role. Covers value framing, competitive positioning, and developer-first copy.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Pricing</span>
+        <span class="tag">Messaging Audit</span>
+        <span class="tag">GTM</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Canonical/" target="_blank" data-tags="iot developer saas">
+      <div class="card-top">
+        <span class="card-num">02</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Canonical</div>
+      <p class="card-desc">Persona-led positioning exercise for Ubuntu Core's embedded systems audience. Includes GTM brief, messaging framework, and buyer persona cards.</p>
+      <div class="card-tags">
+        <span class="tag accent">IoT / Embedded</span>
+        <span class="tag">Personas</span>
+        <span class="tag">Positioning</span>
+        <span class="tag">GTM</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Razorpay/" target="_blank" data-tags="fintech">
+      <div class="card-top">
+        <span class="card-num">03</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Razorpay</div>
+      <p class="card-desc">PMM positioning exercise for Razorpay's developer-facing payment infrastructure products in the Indian Fintech market.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Payments</span>
+        <span class="tag">Messaging Audit</span>
+        <span class="tag">GTM</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/RevolutBusiness/" target="_blank" data-tags="fintech saas growth">
+      <div class="card-top">
+        <span class="card-num">04</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Revolut Business</div>
+      <p class="card-desc">Messaging and positioning brief for Revolut Business, targeting SMB and startup segments across European markets.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">SaaS</span>
+        <span class="tag">SMB</span>
+        <span class="tag">Messaging</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Revolut-Used-Gone-Campaign/" target="_blank" data-tags="fintech growth">
+      <div class="card-top">
+        <span class="card-num">05</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Revolut · Used Gone</div>
+      <p class="card-desc">Full campaign creative platform for Revolut's Virtual Single-Use Cards, from strategic brief to art direction and launch mocks.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Campaign</span>
+        <span class="tag">Creative Platform</span>
+        <span class="tag">Product Launch</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/CashFree/" target="_blank" data-tags="fintech developer">
+      <div class="card-top">
+        <span class="card-num">06</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Cashfree</div>
+      <p class="card-desc">GTM and messaging brief for Cashfree Payments, focused on developer onboarding and API-first positioning in the Indian payments space.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Developer Tools</span>
+        <span class="tag">GTM</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/ChargeBee/" target="_blank" data-tags="fintech saas">
+      <div class="card-top">
+        <span class="card-num">07</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Chargebee</div>
+      <p class="card-desc">Positioning and messaging teardown for Chargebee's subscription billing platform targeting SaaS finance and revenue teams.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">SaaS</span>
+        <span class="tag">Billing</span>
+        <span class="tag">Positioning</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/RelayFi_PoW/" target="_blank" data-tags="fintech saas">
+      <div class="card-top">
+        <span class="card-num">08</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">RelayFi</div>
+      <p class="card-desc">PMM proof of work for RelayFi, a business banking platform for SMBs. Covers messaging strategy and competitive differentiation.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">SMB Banking</span>
+        <span class="tag">Messaging</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Lifesight/" target="_blank" data-tags="saas developer growth">
+      <div class="card-top">
+        <span class="card-num">09</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Lifesight</div>
+      <p class="card-desc">Positioning exercise for Lifesight's marketing measurement and attribution platform, targeting growth and data teams.</p>
+      <div class="card-tags">
+        <span class="tag accent">SaaS</span>
+        <span class="tag">Analytics</span>
+        <span class="tag">Positioning</span>
+        <span class="tag">Growth</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/smallcase/" target="_blank" data-tags="fintech growth">
+      <div class="card-top">
+        <span class="card-num">10</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Smallcase</div>
+      <p class="card-desc">GTM and messaging brief for Smallcase's retail investment platform, focused on simplifying equity investing for first-time investors.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Investments</span>
+        <span class="tag">GTM</span>
+        <span class="tag">Growth</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Shippo/" target="_blank" data-tags="saas developer">
+      <div class="card-top">
+        <span class="card-num">11</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Shippo</div>
+      <p class="card-desc">Messaging and positioning teardown for Shippo's shipping API and label platform targeting e-commerce developers and operations teams.</p>
+      <div class="card-tags">
+        <span class="tag accent">SaaS</span>
+        <span class="tag">Developer Tools</span>
+        <span class="tag">Messaging</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Veeva/" target="_blank" data-tags="saas">
+      <div class="card-top">
+        <span class="card-num">12</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Veeva</div>
+      <p class="card-desc">PMM positioning exercise for Veeva's life sciences cloud platform, covering enterprise buyer personas and vertical SaaS messaging.</p>
+      <div class="card-tags">
+        <span class="tag accent">SaaS</span>
+        <span class="tag">Life Sciences</span>
+        <span class="tag">Enterprise</span>
+        <span class="tag">Positioning</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Deltek/" target="_blank" data-tags="saas">
+      <div class="card-top">
+        <span class="card-num">13</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Deltek</div>
+      <p class="card-desc">Messaging brief for Deltek's project-based ERP platform targeting professional services and government contracting firms.</p>
+      <div class="card-tags">
+        <span class="tag accent">SaaS</span>
+        <span class="tag">Enterprise</span>
+        <span class="tag">ERP</span>
+        <span class="tag">Messaging</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Avvio/" target="_blank" data-tags="saas growth">
+      <div class="card-top">
+        <span class="card-num">14</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Avvio</div>
+      <p class="card-desc">PMM positioning exercise for Avvio's AI-powered hotel booking platform, covering hospitality buyer personas and conversion messaging.</p>
+      <div class="card-tags">
+        <span class="tag accent">SaaS</span>
+        <span class="tag">AI</span>
+        <span class="tag">Hospitality</span>
+        <span class="tag">Positioning</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Continuous/" target="_blank" data-tags="developer saas">
+      <div class="card-top">
+        <span class="card-num">15</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Continuous</div>
+      <p class="card-desc">Messaging and GTM brief for a developer-facing continuous delivery platform, targeting engineering and DevOps teams.</p>
+      <div class="card-tags">
+        <span class="tag accent">Developer Tools</span>
+        <span class="tag">DevOps</span>
+        <span class="tag">GTM</span>
+        <span class="tag">Messaging</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Boundless-PoW/" target="_blank" data-tags="saas growth">
+      <div class="card-top">
+        <span class="card-num">16</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Boundless</div>
+      <p class="card-desc">Positioning brief for Boundless's global employment and HR platform, targeting companies hiring internationally.</p>
+      <div class="card-tags">
+        <span class="tag accent">SaaS</span>
+        <span class="tag">HR Tech</span>
+        <span class="tag">Positioning</span>
+        <span class="tag">Global GTM</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/RevPoints_Audit/" target="_blank" data-tags="fintech growth">
+      <div class="card-top">
+        <span class="card-num">17</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">RevPoints</div>
+      <p class="card-desc">Messaging audit for RevPoints' loyalty and rewards program, covering positioning clarity and conversion copy improvements.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Loyalty</span>
+        <span class="tag">Messaging Audit</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/Altitude_LandingPage/" target="_blank" data-tags="fintech web3">
+      <div class="card-top">
+        <span class="card-num">18</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Altitude</div>
+      <p class="card-desc">Full landing page build for Altitude, a stablecoin-native business account for borderless companies. Covers product messaging, positioning, and conversion copy.</p>
+      <div class="card-tags">
+        <span class="tag accent">Fintech</span>
+        <span class="tag">Web3</span>
+        <span class="tag">Landing Page</span>
+        <span class="tag">Stablecoin</span>
+      </div>
+    </a>
+
+    <a class="card" href="https://bhanuexcalibur.github.io/EtherFiAudit/" target="_blank" data-tags="web3 fintech">
+      <div class="card-top">
+        <span class="card-num">19</span>
+        <span class="arrow">↗</span>
+      </div>
+      <div class="card-company">Ether.fi</div>
+      <p class="card-desc">Social strategy audit for Ether.fi's Instagram, diagnosing mixed brand signals and building a playbook for Web2 audience growth.</p>
+      <div class="card-tags">
+        <span class="tag accent">Web3</span>
+        <span class="tag">Social Strategy</span>
+        <span class="tag">Growth Audit</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <p>bhanuexcalibur.github.io</p>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <a class="contact-link" href="mailto:bhanukumar0902@gmail.com">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      Email
+    </a>
+    <a class="contact-link" href="https://linkedin.com/in/bhanuexcalibur" target="_blank">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="contact-link" href="https://drive.google.com/file/d/1J5kCDIqAvIY8-TmzLPvYnauS8agx3Cmt/view?usp=sharing" target="_blank">
+      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+      Resume
+    </a>
+  </div>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.tags.includes(filter)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
